@@ -185,6 +185,7 @@ class DataTable2 extends DataTable {
     this.sortArrowIcon = Icons.arrow_upward,
     this.sortArrowBuilder,
     this.headingRowDecoration,
+    this.fit = FlexFit.tight,
     required super.rows,
   })  : assert(fixedLeftColumns >= 0),
         assert(fixedTopRows >= 0);
@@ -265,6 +266,12 @@ class DataTable2 extends DataTable {
   /// When there're both fixed top rows and fixed left columns with [fixedCornerColor] provided,
   /// this decoration overrides top left cornner cell color.
   final BoxDecoration? headingRowDecoration;
+
+  /// Sets the type of fit for the Flexible widget that contains the body of the table.
+  /// This is useful to set to Loose when the table will be nested within another SingleChildScrollView,
+  /// for example, and you want it to occupy its full space without needing to expand,
+  /// thus enabling a FullPage behavior.
+  final FlexFit fit;
 
   /// The height of each row (excluding the row that contains column headings).
   ///
@@ -1054,7 +1061,7 @@ class DataTable2 extends DataTable {
                                             previousValue + value),
                                   ))),
                     Flexible(
-                        fit: FlexFit.tight,
+                        fit: fit,
                         child: Scrollbar(
                             thumbVisibility: isVerticalScrollBarVisible ??
                                 (isiOS
