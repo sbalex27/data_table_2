@@ -1116,9 +1116,7 @@ class DataTable2 extends DataTable {
                                     columnWidths: widthsAsMap,
                                     border: border,
                                     children: [headingRow])),
-                            Flexible(
-                                fit: FlexFit.tight,
-                                child: empty ?? const SizedBox())
+                            empty ?? const SizedBox()
                           ])
                         : Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
