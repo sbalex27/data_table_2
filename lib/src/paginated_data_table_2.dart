@@ -213,6 +213,8 @@ class PaginatedDataTable2 extends StatefulWidget {
     this.smRatio = 0.67,
     this.lmRatio = 1.2,
     this.headingRowDecoration,
+    this.isVerticalScrollBarVisible,
+    this.isHorizontalScrollBarVisible,
   })  : assert(actions == null || (header != null)),
         assert(columns.isNotEmpty),
         assert(sortColumnIndex == null ||
@@ -320,7 +322,7 @@ class PaginatedDataTable2 extends StatefulWidget {
   /// The background color for the heading row.
   ///
   /// The effective background color can be made to depend on the
-  /// [MaterialState] state, i.e. if the row is pressed, hovered, focused when
+  /// [WidgetState] state, i.e. if the row is pressed, hovered, focused when
   /// sorted. The color is painted as an overlay to the row. To make sure that
   /// the row's [InkWell] is visible (when pressed, hovered and focused), it is
   /// recommended to use a translucent color.
@@ -345,7 +347,7 @@ class PaginatedDataTable2 extends StatefulWidget {
   ///    match a component's state:
   ///    <https://material.io/design/interaction/states.html#anatomy>.
   /// {@endtemplate}
-  final MaterialStateProperty<Color?>? headingRowColor;
+  final WidgetStateProperty<Color?>? headingRowColor;
 
   /// If set this field will override the current BoxDecoration.
   /// It takes precedence over headerRowColor when both are provided.
@@ -508,6 +510,12 @@ class PaginatedDataTable2 extends StatefulWidget {
 
   /// Exposes scroll controller of the SingleChildScrollView that makes data rows horizontally scrollable
   final ScrollController? horizontalScrollController;
+
+  /// Determines whether the vertical scroll bar is visible, for iOS takes value from scrollbarTheme when null
+  final bool? isVerticalScrollBarVisible;
+
+  /// Determines whether the horizontal scroll bar is visible, for iOS takes value from scrollbarTheme when null
+  final bool? isHorizontalScrollBarVisible;
 
   @override
   PaginatedDataTable2State createState() => PaginatedDataTable2State();
@@ -797,6 +805,8 @@ class PaginatedDataTable2State extends State<PaginatedDataTable2> {
           border: widget.border,
           smRatio: widget.smRatio,
           lmRatio: widget.lmRatio,
+          isHorizontalScrollBarVisible: widget.isHorizontalScrollBarVisible,
+          isVerticalScrollBarVisible: widget.isVerticalScrollBarVisible,
         ),
       ),
     );
