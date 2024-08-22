@@ -59,6 +59,12 @@ abstract class AsyncDataTableSource extends DataTableSource {
   int _prevFetchSratIndex = 0;
   int _prevFetchCount = 0;
 
+  void setRows(List<DataRow> newRows) {
+    assert(newRows.length == _rows.length);
+    _rows = newRows;
+    notifyListeners();
+  }
+
   /// Override this method to allow the data source asynchronously
   /// fetch [count] data beginning from [start] (e.g. from a server) and convert
   /// them to [DataRow]/[DataRow2] entities consumed by [AsyncPaginatedDataTable2] widget.
