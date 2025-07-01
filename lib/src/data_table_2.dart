@@ -434,7 +434,7 @@ class DataTable2 extends DataTable {
         Flexible(child: label),
         if (onSort != null) ...<Widget>[
           customArrows ??
-              _SortArrow(
+              SortArrow(
                 visible: sorted,
                 up: sorted ? ascending : null,
                 duration: sortArrowAnimationDuration,
@@ -1435,8 +1435,9 @@ class DataTable2 extends DataTable {
   }
 }
 
-class _SortArrow extends StatefulWidget {
-  const _SortArrow({
+class SortArrow extends StatefulWidget {
+  const SortArrow({
+    super.key,
     required this.visible,
     required this.up,
     required this.duration,
@@ -1452,10 +1453,10 @@ class _SortArrow extends StatefulWidget {
   final IconData sortArrowIcon;
 
   @override
-  _SortArrowState createState() => _SortArrowState();
+  SortArrowState createState() => SortArrowState();
 }
 
-class _SortArrowState extends State<_SortArrow> with TickerProviderStateMixin {
+class SortArrowState extends State<SortArrow> with TickerProviderStateMixin {
   late AnimationController _opacityController;
   late Animation<double> _opacityAnimation;
 
@@ -1506,7 +1507,7 @@ class _SortArrowState extends State<_SortArrow> with TickerProviderStateMixin {
   }
 
   @override
-  void didUpdateWidget(_SortArrow oldWidget) {
+  void didUpdateWidget(SortArrow oldWidget) {
     super.didUpdateWidget(oldWidget);
     bool skipArrow = false;
     final bool? newUp = widget.up ?? _up;
